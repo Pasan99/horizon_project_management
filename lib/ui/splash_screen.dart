@@ -13,7 +13,7 @@ class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   AnimationController _controller;
   Animation<double> _animation;
-
+// commit from dev
   @override
   void initState() {
     super.initState();
