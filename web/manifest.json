@@ -1,0 +1,23 @@
+{
+    "name": "horizon_project_management",
+    "short_name": "horizon_project_management",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#0175C2",
+    "theme_color": "#0175C2",
+    "description": "You are a software engineer in Arrow (pvt) Ltd. Horizon (pvt) Ltd is your client and they are working on managing various projects. Horizon (pvt) Ltd given an outsourced software development project to your company to build project management system. System should allow only Horizon (pvt) Ltd employees to use this system. Horizon (pvt) Ltd should able to create any project. Each project has a project manager who is an employee of the organization.   Requirements  1.	Each project has following a.	Project name b.	Start date c.	End date d.	Project cost e.	Project Manager f.	Client g.	Status(Ongoing, Finished, Cancelled, On hold)  2.	System should allow project manager to create multiple projects. 3.	Each project can have multiple tasks. 4.	Each Task can be assigned to an employee. 5.	System admins can create accounts and manage employees in the system. (add, edit, delete) 6.	Employees can login to the system and change the password 7.	Assigned employee can be able to update the status of the task (Ongoing, Finished, Cancelled, On hold ) 8.	Project Manager should be able to update the status of the project whenever necessary. 9.	System should be able to generate the report of on hold projects and respective reason  10.	System should be able to generate the report of employee wise allocated tasks. ",
+    "orientation": "portrait-primary",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "icons/Icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "icons/Icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

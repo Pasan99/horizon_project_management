@@ -1,0 +1,66 @@
+name: horizon_project_management
+description: You are a software engineer in Arrow (pvt) Ltd. Horizon (pvt) Ltd is your client and they are working on managing various projects. Horizon (pvt) Ltd given an outsourced software development project to your company to build project management system. System should allow only Horizon (pvt) Ltd employees to use this system. Horizon (pvt) Ltd should able to create any project. Each project has a project manager who is an employee of the organization.   Requirements  1.	Each project has following a.	Project name b.	Start date c.	End date d.	Project cost e.	Project Manager f.	Client g.	Status(Ongoing, Finished, Cancelled, On hold)  2.	System should allow project manager to create multiple projects. 3.	Each project can have multiple tasks. 4.	Each Task can be assigned to an employee. 5.	System admins can create accounts and manage employees in the system. (add, edit, delete) 6.	Employees can login to the system and change the password 7.	Assigned employee can be able to update the status of the task (Ongoing, Finished, Cancelled, On hold ) 8.	Project Manager should be able to update the status of the project whenever necessary. 9.	System should be able to generate the report of on hold projects and respective reason  10.	System should be able to generate the report of employee wise allocated tasks. 
+
+# The following line prevents the package from being accidentally published to
+# pub.dev using `pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # routing
+  auto_route: ^0.6.9
+  cupertino_icons: ^1.0.0
+
+  #  Firebase
+  firebase_core: ^1.0.0
+  cloud_firestore: ^1.0.0
+  firebase_auth: ^1.0.0
+
+  provider: ^5.0.0
+  flutter_spinkit: ^4.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  build_runner: ^1.11.5
+  auto_route_generator: ^0.6.9
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/
+    - assets/images/
+
+  fonts:
+    - family: Raleway
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+        - asset: assets/fonts/Roboto-Black.ttf
+        - asset: assets/fonts/Roboto-Black.ttf
+        - asset: assets/fonts/Roboto-BlackItalic.ttf
+        - asset: assets/fonts/Roboto-Italic.ttf
+        - asset: assets/fonts/Roboto-Light.ttf
+        - asset: assets/fonts/Roboto-LightItalic.ttf
+        - asset: assets/fonts/Roboto-Medium.ttf
+        - asset: assets/fonts/Roboto-MediumItalic.ttf
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Thin.ttf
+        - asset: assets/fonts/Roboto-ThinItalic.ttf

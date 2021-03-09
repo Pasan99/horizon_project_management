@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "241655385382",
+    "project_id": "horizon-57bcc",
+    "storage_bucket": "horizon-57bcc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:241655385382:android:e07388300b9fd1ad0605e7",
+        "android_client_info": {
+          "package_name": "com.triangle.horizon_project_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "241655385382-fno0h6nn4b53fjt2di7eehkpieppn7o6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBu8fbVXy7yRZqMZ4vgwRD0gp4uZdOF5Io"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "241655385382-fno0h6nn4b53fjt2di7eehkpieppn7o6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
