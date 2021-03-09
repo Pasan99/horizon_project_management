@@ -14,6 +14,7 @@ class _SplashScreenState extends State<SplashScreen>
   AnimationController _controller;
   Animation<double> _animation;
 // commit from dev
+  // commit from pasan
   @override
   void initState() {
     super.initState();
