@@ -59,7 +59,7 @@ class _SplashScreenState extends State<SplashScreen>
                           height: 20,
                         ),
                         Text(
-                          "INSIGHT",
+                          "Project Manager",
                           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: AppColors.TEXT_WHITE),
                         ),
                       ],
@@ -68,7 +68,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 32, right: 32, left: 32),
-                  child: Text("Powered by TeamTriangle", style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12, color: AppColors.TEXT_WHITE),),
+                  child: Text("Powered by Horizon Pvt Ltd", style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12, color: AppColors.TEXT_WHITE),),
                 )
               ],
             ),

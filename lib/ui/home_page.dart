@@ -38,12 +38,10 @@ class _HomePageState extends State<HomePage> {
       child: Scaffold(
           bottomNavigationBar: Row(
             children: <Widget>[
-              buildNavItem(Icon(Icons.home), 0),
-              //buildNavItem(Icon(Icons.search), 1),
-              //buildNavItem(Icon(Icons.people), 2),
-              buildNavItem(Icon(Icons.assessment), 1),
-              buildNavItem(Icon(Icons.person), 2),
-              buildNavItem(Icon(Icons.person), 4),
+              buildNavItem(Icon(Icons.assignment), 0),
+              buildNavItem(Icon(Icons.stop_circle_rounded), 1),
+              buildNavItem(Icon(Icons.people), 2),
+              buildNavItem(Icon(Icons.person), 3),
             ],
           ),
           body: fragments[_selectedItemIndex]
