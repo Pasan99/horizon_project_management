@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:horizon_project_management/ui/fragments/employees_fragment.dart';
+import 'package:horizon_project_management/ui/fragments/profile_fragment.dart';
 import 'package:horizon_project_management/values/colors.dart';
 
 import 'fragments/home_page_fragment.dart';
+import 'fragments/on_hold_projects_fragment.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,9 +17,9 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> fragments = [
     HomePageFragment(),
-    HomePageFragment(),
-    HomePageFragment(),
-    HomePageFragment(),
+    OnHoldProjectsFragment(),
+    EmployeesFragment(),
+    ProfileFragment(),
   ];
 
   void _onItemTapped(int index) {

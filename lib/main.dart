@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
             primaryColorLight: AppColors.LIGHT_MAIN_COLOR,
             splashColor: AppColors.LIGHT_MAIN_COLOR,
             accentColor: AppColors.LIGHT_MAIN_COLOR,
+            buttonColor: AppColors.MAIN_COLOR,
             brightness: Brightness.light,
             fontFamily: 'Roboto',
             bottomSheetTheme: BottomSheetThemeData(
