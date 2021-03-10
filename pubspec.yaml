@@ -36,6 +36,13 @@ dependencies:
   provider: ^5.0.0
   flutter_spinkit: ^4.1.2
 
+
+  # Pagination
+  pull_to_refresh: ^1.6.0
+  shimmer: 1.1.1
+
+  datetime_picker_formfield: ^2.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
