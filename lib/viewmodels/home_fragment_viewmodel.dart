@@ -9,6 +9,7 @@ class HomeFragmentViewModel extends ChangeNotifier{
   }
 
   void getProjects() {
+    // getting all the projects
     FirebaseFirestore.instance
         .collection('projects')
         .get()

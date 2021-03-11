@@ -32,6 +32,7 @@ class EditProjectPageViewModel extends ChangeNotifier{
   }
 
   void getManagers() {
+    // getting all managers from firestore
     managers = [];
     FirebaseFirestore.instance
         .collection('users')
@@ -42,12 +43,13 @@ class EditProjectPageViewModel extends ChangeNotifier{
       querySnapshot.docs.forEach((doc) {
         managers.add(User().toClass(doc.data()));
       });
+      // updating the UI
       notifyListeners();
     });
   }
   
   Future<bool> saveProject() async {
-    // Get Project Data
+    // Get Project Data from controllers (data entered by user)
     Project newProject = Project();
     newProject.client = clientController.text;
     newProject.name = nameController.text;
@@ -58,23 +60,26 @@ class EditProjectPageViewModel extends ChangeNotifier{
     newProject.cost = double.parse(costController.text);
     newProject.manager  = managers.where((element) => element.id == currentSelectedManager).first;
 
+    // create unique key for document (this way documents will ordered by based on created date)
     int futureDate = new DateTime.utc(2100, 11, 9).microsecondsSinceEpoch.toInt();
     String uniqueId = (futureDate - new DateTime.now().microsecondsSinceEpoch.toInt()).toString();
     newProject.id = uniqueId;
+
     newProject.status = ProjectStatus.ONGOING;
 
+    // set the project id if updating existing project
     if (project != null){
       newProject.id = project.id;
     }
-
+    // Firestore document reference
     var reference = FirebaseFirestore.instance.collection('projects').doc(newProject.id);
 
     if (project != null){
-      // edit
+      // edit project
       await reference.update(newProject.toMap());
     }
     else{
-      // new
+      // new project
       await reference.set(newProject.toMap());
     }
     return true;
