@@ -32,7 +32,6 @@ class EditTaskPageViewModel extends ChangeNotifier{
     employees = [];
     FirebaseFirestore.instance
         .collection('users')
-        .where("role", isEqualTo: RoleTypes.EMPLOYEE)
         .get()
         .then((QuerySnapshot querySnapshot)
     {
