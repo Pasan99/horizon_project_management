@@ -7,10 +7,12 @@ class LoginPageViewModel extends ChangeNotifier{
 
   Future<bool> loginUser({@required String email, @required String password}) async {
     try {
+      // Use firebase authentication to login user
       var credentials = await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: email.trim(),
           password: password.trim()
       ).catchError((e){
+        // showing error
         ScaffoldMessenger.of(_context).hideCurrentSnackBar();
         ScaffoldMessenger.of(_context).showSnackBar(
             SnackBar(
@@ -21,7 +23,7 @@ class LoginPageViewModel extends ChangeNotifier{
       if (credentials.user == null){
         return Future.value(false);
       }
-
+      // if user exist return true
       if (FirebaseAuth.instance.currentUser != null){
         return Future.value(true);
       }
