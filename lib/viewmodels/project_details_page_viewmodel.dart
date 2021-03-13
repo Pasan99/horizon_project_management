@@ -21,6 +21,7 @@ class ProjectDetailsPageViewModel extends ChangeNotifier{
   }
 
   void getTasks() {
+    // get all tasks
     FirebaseFirestore.instance
         .collection('tasks')
         .where("projectId", isEqualTo: project.id)
@@ -29,17 +30,23 @@ class ProjectDetailsPageViewModel extends ChangeNotifier{
     {
       tasks = [];
       employees = [];
+      // save retrieved task to array
       querySnapshot.docs.forEach((doc) {
         tasks.add(Task().toClass(doc.data()));
       });
 
+      // add 'ALL' option to filter (filter task by employee)
       employees.add(new User(id: "ALL", name: "All"));
       currentSelectedEmployee = "ALL";
+
+      // loop every task to find employee names
       for(var t in tasks){
+        // if employee not exist in the array, add new entry and assign color for that employee
         if (employees == null || employees.length == 0 || employees.where((element) => element.id == t.assignee.id).isEmpty){
           t.assignee.color  = colors[random.nextInt(7)];
           employees.add(t.assignee);
         }
+        // if employee exist, use existing employee's color
         else{
           t.assignee.color  = employees.where((element) => element.id == t.assignee.id).first.color;
         }
@@ -51,6 +58,7 @@ class ProjectDetailsPageViewModel extends ChangeNotifier{
   }
 
   void filterTasks(){
+    // filter tasks by selected employee from the dropdown
     if (allTasks != null){
       if (currentSelectedEmployee == "ALL"){
         tasks = allTasks;

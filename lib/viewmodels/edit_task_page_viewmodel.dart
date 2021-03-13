@@ -20,6 +20,7 @@ class EditTaskPageViewModel extends ChangeNotifier{
   EditTaskPageViewModel(this.task, this.project){
     getEmployees();
 
+    // if editing the task, set fields by existing values of the task
     if (task != null) {
       titleController = TextEditingController(text: task.title);
       descriptionController = TextEditingController(text: task.description);
@@ -29,10 +30,10 @@ class EditTaskPageViewModel extends ChangeNotifier{
   }
 
   void getEmployees() {
+    // get all users
     employees = [];
     FirebaseFirestore.instance
         .collection('users')
-        .where("role", isEqualTo: RoleTypes.EMPLOYEE)
         .get()
         .then((QuerySnapshot querySnapshot)
     {
@@ -51,6 +52,8 @@ class EditTaskPageViewModel extends ChangeNotifier{
     newTask.assignee  = employees.where((element) => element.id == currentSelectedAssignee).first;
     newTask.status = currentSelectedStatus;
     newTask.projectId = project.id;
+
+    // create unique key for document (this way documents will ordered by based on created date)
     int futureDate = new DateTime.utc(2100, 11, 9).microsecondsSinceEpoch.toInt();
     String uniqueId = (futureDate - new DateTime.now().microsecondsSinceEpoch.toInt()).toString();
     newTask.id = uniqueId;
