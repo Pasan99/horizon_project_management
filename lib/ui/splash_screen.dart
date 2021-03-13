@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:horizon_project_management/routes/router.gr.dart';
+import 'package:horizon_project_management/utilties/user_helper.dart';
 import 'package:horizon_project_management/values/colors.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -30,6 +31,7 @@ class _SplashScreenState extends State<SplashScreen>
         ExtendedNavigator.of(context).popAndPush(Routes.loginPage);
       } else {
         ExtendedNavigator.of(context).popAndPush(Routes.homePage);
+        UserHelper().renewUser();
       }
     });
   }

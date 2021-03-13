@@ -12,7 +12,6 @@ class EmployeeFragmentViewModel extends ChangeNotifier{
   void getEmployees() {
     FirebaseFirestore.instance
         .collection('users')
-         .where("role",isEqualTo:"EMPLOYEE")
         .get()
         .then((QuerySnapshot querySnapshot)
           {

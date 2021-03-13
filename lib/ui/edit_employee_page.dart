@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
 import 'package:flutter/material.dart';
+import 'package:horizon_project_management/models/constants.dart';
 import 'package:horizon_project_management/models/user_model.dart';
 
 import 'package:horizon_project_management/viewmodels/edit_employee_page_viewmodel.dart';
@@ -56,8 +57,44 @@ class _EditEmployeePageState extends State<EditEmployeePage> {
                         ),
                         // initialValue: widget.project == null ? "" : widget.project.name,
                       ),
-
-
+                      Container(height: 16,),
+                      FormField<String>(
+                        validator: (value) {
+                          if (model.currentSelectedRole == null || model.currentSelectedRole == '') {
+                            return 'Project Manager cannot be empty';
+                          }
+                          return null;
+                        },
+                        builder: (FormFieldState<String> state) {
+                          return InputDecorator(
+                            decoration: InputDecoration(
+                              // labelStyle: textStyle,
+                                hintText: 'Task Status',
+                                labelText: "Task Status",
+                                border: OutlineInputBorder(borderRadius: BorderRadius.circular(4.0))
+                            ),
+                            isEmpty: model.currentSelectedRole == '',
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton<String>(
+                                isDense: true,
+                                value: model.currentSelectedRole,
+                                onChanged:  (String newValue) {
+                                  setState(() {
+                                    model.currentSelectedRole = newValue;
+                                    state.didChange(newValue);
+                                  });
+                                },
+                                items: [RoleTypes.EMPLOYEE, RoleTypes.MANAGER, RoleTypes.ADMIN].map((value) {
+                                  return DropdownMenuItem<String>(
+                                    value: value,
+                                    child: Text(value),
+                                  );
+                                }).toList(),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
                       Container(height: 8,),
                       TextFormField(
                         validator: (value) {
@@ -89,7 +126,7 @@ class _EditEmployeePageState extends State<EditEmployeePage> {
                         ),
                       ),
                     Container(height: 8,),
-                    TextFormField(
+                    widget.user == null ? TextFormField(
 
                         validator: (value) {
                           if (value.isEmpty) {
@@ -103,7 +140,7 @@ class _EditEmployeePageState extends State<EditEmployeePage> {
                             labelText: 'Password',
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(4.0))
                         ),
-                      ),
+                      ) : Container(),
 
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16),
@@ -118,19 +155,18 @@ class _EditEmployeePageState extends State<EditEmployeePage> {
                                 // Validate returns true if the form is valid, or false
                                 // otherwise.
                                 if (_formKey.currentState.validate()) {
-                                  // If the form is valid, display a Snackbar.
-                                  Auth.UserCredential userCredential;
-                                  if(widget.user==null){
-                                    userCredential= await UserHelper().registerWithPassword(model.emailController.text,model.passwordController.text);
-
-                                  }
-
                                   setState(() {
                                     isEnabled = false;
                                   });
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(content: Text('Processing Data')));
 
+
+                                  Auth.UserCredential userCredential;
+                                  if(widget.user==null){
+                                    userCredential= await UserHelper().registerWithPassword(model.emailController.text,model.passwordController.text);
+
+                                  }
                                   bool result = await model.saveUser(userCredential);
                                   if (result){
                                     ExtendedNavigator.of(context).pop();

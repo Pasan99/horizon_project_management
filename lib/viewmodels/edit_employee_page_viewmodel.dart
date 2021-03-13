@@ -9,6 +9,7 @@ class EditEmployeePageViewModel extends ChangeNotifier{
   User user;
   List<User> employee;
   String currentSelectedEmployee;
+  String currentSelectedRole = RoleTypes.EMPLOYEE;
 
   // Controllers
   TextEditingController nameController = TextEditingController();
@@ -52,18 +53,15 @@ class EditEmployeePageViewModel extends ChangeNotifier{
     User newUser = User();
     newUser.name = nameController.text;
     newUser.contact=contactController.text;
-    newUser.role=roleController.text;
     newUser.email=emailController.text;
-
-    newUser.role  =  roleController.text;
-
-    int futureDate = new DateTime.utc(2100, 11, 9).microsecondsSinceEpoch.toInt();
-    String uniqueId = (futureDate - new DateTime.now().microsecondsSinceEpoch.toInt()).toString();
-    newUser.id = userCredential.user.uid;
+    newUser.role  =  currentSelectedRole;
 
 
     if (user != null){
       newUser.id = user.id;
+    }
+    else{
+      newUser.id = userCredential.user.uid;
     }
 
     var reference = FirebaseFirestore.instance.collection('users').doc(newUser.id);
