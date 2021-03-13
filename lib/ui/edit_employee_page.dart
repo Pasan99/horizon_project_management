@@ -150,35 +150,67 @@ class _EditEmployeePageState extends State<EditEmployeePage> {
                         builder: (context, model, child) {
                           return Padding(
                             padding: const EdgeInsets.symmetric(vertical: 16.0),
-                            child: ElevatedButton.icon(
-                              onPressed: isEnabled ?() async {
-                                // Validate returns true if the form is valid, or false
-                                // otherwise.
-                                if (_formKey.currentState.validate()) {
-                                  setState(() {
-                                    isEnabled = false;
-                                  });
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(SnackBar(content: Text('Processing Data')));
+                            child: Row(
+                              children: [
+                                ElevatedButton.icon(
+                                  onPressed: isEnabled ?() async {
+                                    // Validate returns true if the form is valid, or false
+                                    // otherwise.
+                                    if (_formKey.currentState.validate()) {
+                                      setState(() {
+                                        isEnabled = false;
+                                      });
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(content: Text('Processing Data')));
 
 
-                                  Auth.UserCredential userCredential;
-                                  if(widget.user==null){
-                                    userCredential= await UserHelper().registerWithPassword(model.emailController.text,model.passwordController.text);
+                                      Auth.UserCredential userCredential;
+                                      if(widget.user==null){
+                                        userCredential= await UserHelper().registerWithPassword(model.emailController.text,model.passwordController.text);
 
-                                  }
-                                  bool result = await model.saveUser(userCredential);
-                                  if (result){
-                                    ExtendedNavigator.of(context).pop();
-                                  }
-                                  else{
-                                    setState(() {
-                                      isEnabled = true;
-                                    });
-                                  }
-                                }
-                              } : null,
-                              label: Text("Save Employee"), icon: Icon(Icons.save),
+                                      }
+                                      bool result = await model.saveUser(userCredential);
+                                      if (result){
+                                        ExtendedNavigator.of(context).pop();
+                                      }
+                                      else{
+                                        setState(() {
+                                          isEnabled = true;
+                                        });
+                                      }
+                                    }
+                                  } : null,
+                                  label: Text("Save Employee"), icon: Icon(Icons.save),
+                                ),
+                                Container(width: 12,),
+                                ElevatedButton.icon(
+                                  onPressed: isEnabled ?() async {
+                                    // Validate returns true if the form is valid, or false
+                                    // otherwise.
+                                    if (_formKey.currentState.validate()) {
+                                      setState(() {
+                                        isEnabled = false;
+                                      });
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(content: Text('Deleting User')));
+
+                                      bool result = await model.deleteUser();
+                                      if (result){
+                                        ExtendedNavigator.of(context).pop();
+                                      }
+                                      else{
+                                        setState(() {
+                                          isEnabled = true;
+                                        });
+                                      }
+                                    }
+                                  } : null,
+                                  label: Text("Delete Employee"), icon: Icon(Icons.delete),
+                                  style: ElevatedButton.styleFrom(
+                                    primary: Colors.redAccent,
+                                  ),
+                                ),
+                              ],
                             ),
                           );
                         }

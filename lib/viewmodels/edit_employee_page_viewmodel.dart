@@ -76,4 +76,10 @@ class EditEmployeePageViewModel extends ChangeNotifier{
     }
     return true;
   }
+
+  Future<bool> deleteUser() async {
+    var reference = FirebaseFirestore.instance.collection('users').doc(user.id);
+    await reference.delete();
+    return true;
+  }
 }
