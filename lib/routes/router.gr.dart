@@ -7,7 +7,10 @@
 // ignore_for_file: public_member_api_docs
 
 import 'package:auto_route/auto_route.dart';
+
 import 'package:flutter/material.dart';
+import 'package:horizon_project_management/models/user_model.dart';
+import 'package:horizon_project_management/ui/edit_employee_page.dart';
 
 import '../models/project_model.dart';
 import '../models/task_model.dart';
@@ -24,6 +27,7 @@ class Routes {
   static const String loginPage = '/login-page';
   static const String projectDetailsPage = '/project-details-page';
   static const String editProjectPage = '/edit-project-page';
+  static const String editEmployeePage = '/edit_employee_page';
   static const String editTaskPage = '/edit-task-page';
   static const all = <String>{
     InitialRoute,
@@ -32,6 +36,7 @@ class Routes {
     projectDetailsPage,
     editProjectPage,
     editTaskPage,
+    editEmployeePage
   };
 }
 
@@ -45,6 +50,7 @@ class NewRouter extends RouterBase {
     RouteDef(Routes.projectDetailsPage, page: ProjectDetailsPage),
     RouteDef(Routes.editProjectPage, page: EditProjectPage),
     RouteDef(Routes.editTaskPage, page: EditTaskPage),
+    RouteDef(Routes.editEmployeePage, page: EditEmployeePage),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -104,6 +110,19 @@ class NewRouter extends RouterBase {
         settings: data,
       );
     },
+    EditEmployeePage: (data) {
+      final args = data.getArgs<EditEmployeePageArguments>(
+        orElse: () => EditEmployeePageArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => EditEmployeePage(
+          key: args.key,
+          user: args.user,
+
+        ),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -131,4 +150,11 @@ class EditTaskPageArguments {
   final Task task;
   final Project project;
   EditTaskPageArguments({this.key, this.task, this.project});
+}
+
+/// EditEmployeePage arguments holder class
+class EditEmployeePageArguments {
+    final Key key;
+    final User user;
+    EditEmployeePageArguments({this.key, this.user});
 }

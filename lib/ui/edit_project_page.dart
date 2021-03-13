@@ -24,7 +24,7 @@ class _EditProjectPageState extends State<EditProjectPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.project == null ? "New Project" : "Edit Project"),),
+      appBar: AppBar(title: Text(widget.project == null ? "New Projects" : "Edit Project"),),
       body: ChangeNotifierProvider(
         create: (context) => EditProjectPageViewModel(widget.project),
         child: SingleChildScrollView(
