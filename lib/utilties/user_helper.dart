@@ -26,7 +26,7 @@ class UserHelper{
         Auth.User user = auth.currentUser;
         FirebaseFirestore store = FirebaseFirestore.instance;
         QuerySnapshot snapshot = await store.collection("users")
-            .where("userId", isEqualTo: user.uid)
+            .where("id", isEqualTo: user.uid)
             .get();
 
         if (snapshot != null) {

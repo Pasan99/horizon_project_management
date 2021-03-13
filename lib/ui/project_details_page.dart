@@ -2,9 +2,11 @@ import 'dart:math';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:horizon_project_management/models/constants.dart';
 import 'package:horizon_project_management/models/project_model.dart';
 import 'package:horizon_project_management/routes/router.gr.dart';
 import 'package:horizon_project_management/ui/common/shimmers/shimmer_list_type_1.dart';
+import 'package:horizon_project_management/utilties/user_helper.dart';
 import 'package:horizon_project_management/values/colors.dart';
 import 'package:horizon_project_management/viewmodels/project_details_page_viewmodel.dart';
 import 'package:provider/provider.dart';
@@ -60,7 +62,8 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                   child: Icon(Icons.warning_outlined),
                 )
             ),
-            GestureDetector(
+            UserHelper().getCachedUser() != null
+                && UserHelper().getCachedUser().role == RoleTypes.MANAGER ? GestureDetector(
                 onTap: (){
                   ExtendedNavigator.of(context).push(
                       Routes.editProjectPage,
@@ -73,7 +76,7 @@ class _ProjectDetailsPageState extends State<ProjectDetailsPage> {
                   padding: const EdgeInsets.only(right: 16, left: 8),
                   child: Icon(Icons.edit),
                 )
-            ),
+            ) : Container(),
           ],
         ),
         body: SafeArea(
