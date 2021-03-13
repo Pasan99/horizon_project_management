@@ -11,6 +11,9 @@ import 'package:flutter/material.dart';
 
 import '../models/project_model.dart';
 import '../models/task_model.dart';
+import '../models/user_model.dart';
+import '../ui/change_status_page.dart';
+import '../ui/edit_employee_page.dart';
 import '../ui/edit_project_page.dart';
 import '../ui/edit_task_page.dart';
 import '../ui/home_page.dart';
@@ -25,6 +28,8 @@ class Routes {
   static const String projectDetailsPage = '/project-details-page';
   static const String editProjectPage = '/edit-project-page';
   static const String editTaskPage = '/edit-task-page';
+  static const String editEmployeePage = '/edit-employee-page';
+  static const String changeStatusPage = '/change-status-page';
   static const all = <String>{
     InitialRoute,
     homePage,
@@ -32,6 +37,8 @@ class Routes {
     projectDetailsPage,
     editProjectPage,
     editTaskPage,
+    editEmployeePage,
+    changeStatusPage,
   };
 }
 
@@ -45,6 +52,8 @@ class NewRouter extends RouterBase {
     RouteDef(Routes.projectDetailsPage, page: ProjectDetailsPage),
     RouteDef(Routes.editProjectPage, page: EditProjectPage),
     RouteDef(Routes.editTaskPage, page: EditTaskPage),
+    RouteDef(Routes.editEmployeePage, page: EditEmployeePage),
+    RouteDef(Routes.changeStatusPage, page: ChangeStatusPage),
   ];
   @override
   Map<Type, AutoRouteFactory> get pagesMap => _pagesMap;
@@ -104,6 +113,30 @@ class NewRouter extends RouterBase {
         settings: data,
       );
     },
+    EditEmployeePage: (data) {
+      final args = data.getArgs<EditEmployeePageArguments>(
+        orElse: () => EditEmployeePageArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => EditEmployeePage(
+          key: args.key,
+          user: args.user,
+        ),
+        settings: data,
+      );
+    },
+    ChangeStatusPage: (data) {
+      final args = data.getArgs<ChangeStatusPageArguments>(
+        orElse: () => ChangeStatusPageArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => ChangeStatusPage(
+          key: args.key,
+          project: args.project,
+        ),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -131,4 +164,18 @@ class EditTaskPageArguments {
   final Task task;
   final Project project;
   EditTaskPageArguments({this.key, this.task, this.project});
+}
+
+/// EditEmployeePage arguments holder class
+class EditEmployeePageArguments {
+  final Key key;
+  final User user;
+  EditEmployeePageArguments({this.key, this.user});
+}
+
+/// ChangeStatusPage arguments holder class
+class ChangeStatusPageArguments {
+  final Key key;
+  final Project project;
+  ChangeStatusPageArguments({this.key, this.project});
 }

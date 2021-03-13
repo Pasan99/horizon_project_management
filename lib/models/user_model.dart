@@ -1,7 +1,9 @@
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:horizon_project_management/models/base_model.dart';
+import 'package:horizon_project_management/values/colors.dart';
 
 class User extends BaseModel{
   String id;
@@ -9,7 +11,7 @@ class User extends BaseModel{
   String email;
   String contact;
   String role;
-  Color color;
+  Color color = AppColors.MAIN_COLOR;
 
   User({this.id, this.name, this.email, this.contact, this.role});
 
