@@ -26,6 +26,7 @@ class EditTaskPageViewModel extends ChangeNotifier{
       descriptionController = TextEditingController(text: task.description);
       currentSelectedStatus = task.status;
       currentSelectedAssignee = task.assignee.id;
+      notifyListeners();
     }
   }
 

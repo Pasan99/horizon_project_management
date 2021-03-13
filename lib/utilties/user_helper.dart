@@ -37,7 +37,7 @@ class UserHelper{
             _user = new User();
             DocumentSnapshot document = documents[0];
             _user = _user.toClass(document.data());
-
+            _oldUser = _user;
           }
         }
       }
@@ -84,6 +84,7 @@ class UserHelper{
     Auth.User user =  Auth.FirebaseAuth.instance.currentUser;
    // Auth.FirebaseAuth auth = Auth.FirebaseAuth.instance;
 
+    print(password);
     //Pass in the password to updatePassword.
     user.updatePassword(password).then((_){
       print("Successfully changed password");

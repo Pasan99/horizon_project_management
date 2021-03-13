@@ -1,8 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:horizon_project_management/models/constants.dart';
 import 'package:horizon_project_management/routes/router.gr.dart';
 import 'package:horizon_project_management/ui/common/shimmers/shimmer_list_type_1.dart';
+import 'package:horizon_project_management/utilties/user_helper.dart';
 import 'package:horizon_project_management/viewmodels/home_fragment_viewmodel.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +35,8 @@ class _HomePageFragmentState extends State<HomePageFragment> {
                 );
               }
             ),
-            ElevatedButton.icon(
+            UserHelper().getCachedUser() != null
+                && UserHelper().getCachedUser().role == RoleTypes.MANAGER  ? ElevatedButton.icon(
                 onPressed: (){
                   ExtendedNavigator.of(context).push(
                       Routes.editProjectPage,
@@ -42,7 +45,7 @@ class _HomePageFragmentState extends State<HomePageFragment> {
                   );
                 },
                 icon: Icon(Icons.add), label: Text("New Project"),
-            ),
+            )  : Container(),
           ],
         ),
         body: SafeArea(

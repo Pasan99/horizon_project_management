@@ -83,11 +83,13 @@ class _OnHoldProjectsFragmentState extends State<OnHoldProjectsFragment> {
                                       ),
                                     ],
                                   ),
-                                  Container(height: 4,),
+                                  Container(height: 16,),
+                                  Divider(height: 1,),
+                                  Container(height: 8,),
                                   Row(
                                     children: [
                                       Text(
-                                        project.client,
+                                        "Reason",
                                         style: TextStyle(
                                             fontWeight: FontWeight.w300,
                                             fontSize: 12
@@ -96,22 +98,14 @@ class _OnHoldProjectsFragmentState extends State<OnHoldProjectsFragment> {
                                     ],
                                   ),
 
-                                  Container(height: 4,),
                                   Padding(
                                     padding: const EdgeInsets.only(top: 8),
                                     child: Row(
                                       children: [
                                         Text(
-                                          "LKR " + project.cost.toString(),
+                                          project.onHoldReason,
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 14
-                                          ),
-                                        ),
-                                        Text(
-                                          "   ( managed by " + project.manager.name + " )",
-                                          style: TextStyle(
-                                              fontWeight: FontWeight.w300,
                                               fontSize: 14
                                           ),
                                         ),

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:horizon_project_management/models/constants.dart';
 import 'package:horizon_project_management/models/project_model.dart';
 import 'package:horizon_project_management/models/task_model.dart';
+import 'package:horizon_project_management/utilties/user_helper.dart';
 import 'package:horizon_project_management/viewmodels/edit_task_page_viewmodel.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -57,14 +58,15 @@ class _EditTaskPageState extends State<EditTaskPage> {
                               isEmpty: model.currentSelectedStatus == '',
                               child: DropdownButtonHideUnderline(
                                 child: DropdownButton<String>(
-                                  value: model.currentSelectedStatus,
                                   isDense: true,
-                                  onChanged: (String newValue) {
+                                  value: model.currentSelectedStatus,
+                                  onChanged: widget.task == null || (UserHelper().getCachedUser() != null
+                                      && UserHelper().getCachedUser().id == widget.task.assignee.id)  ? (String newValue) {
                                     setState(() {
                                       model.currentSelectedStatus = newValue;
                                       state.didChange(newValue);
                                     });
-                                  },
+                                  } : null,
                                   items: model.statuses.map((value) {
                                     return DropdownMenuItem<String>(
                                       value: value,
